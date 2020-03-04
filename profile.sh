@@ -11,7 +11,7 @@ adb shell pm list packages ${app_name}
 printf "Please enter a app package name above (Exclude 'package:'): "
 read app_package_name
 
-adb shell dumpsys package ${app_package_name} | findstr userId
+adb shell dumpsys package ${app_package_name} | grep userId
 printf "Please enter a userId above (only number): "
 read userId
 
@@ -27,7 +27,7 @@ echo "running..."
 ./memory.sh ${time} ${app_package_name} &
 ./cpu.sh ${time} ${app_package_name} &
 ./network.sh ${time} ${userId} &
-#./battary.sh ${time} &
+./battery_temperature.sh ${time} &
 
 WORK_PID=`jobs -l | awk '{print $2}'`
 wait $WORK_PID
@@ -39,6 +39,7 @@ echo "#.Finish"
 cat cpuinfo.txt >> Result.txt
 cat meminfo.txt >> Result.txt
 cat networkinfo.txt >> Result.txt
+cat batterytemp.txt >> Result.txt
 
 datetime=`date +%T`
 mkdir Result_${datetime}
