@@ -10,6 +10,7 @@ sleep 60; #unit: seconds
 increase=$(($increase+1))
 if [ $increase -eq $1 ];
 	then
+		echo "" >> batterytemp.txt
 		break
 fi
 done
