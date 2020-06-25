@@ -6,7 +6,7 @@ increase=0
 while [ $increase -lt $1 ];
 do
 echo -n `date +"%T"` `adb shell dumpsys battery|grep "temperature"` >> batterytemp.txt
-sleep 60; #unit: seconds
+sleep $3; #unit: seconds
 increase=$(($increase+1))
 if [ $increase -eq $1 ];
 	then
