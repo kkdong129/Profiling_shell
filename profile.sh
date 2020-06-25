@@ -19,18 +19,15 @@ printf "Please enter a profiling time (unit: minutes): "
 read input_time
 let time=input_time
 
-printf "Please enter a delay time (unit: seconds): "
-read delay_time
-
 echo "#.Run"
 printf "start time (HH:MM:SS) "
 date +"%T"
 echo "running..."
 
-./memory.sh ${time} ${app_package_name} ${delay_time} &
-./cpu.sh ${time} ${app_package_name} ${delay_time} &
-./network.sh ${time} ${userId} ${delay_time} &
-./battery_temperature.sh ${time} ${delay_time} &
+./memory.sh ${time} ${app_package_name} &
+./cpu.sh ${time} ${app_package_name} &
+./network.sh ${time} ${userId} &
+./battery_temperature.sh ${time} &
 
 WORK_PID=`jobs -l | awk '{print $2}'`
 wait $WORK_PID
